@@ -16,12 +16,20 @@ Hämtar alla länkar där person Id är 1.
 
 ### Koppla en person till ett nytt intresse
 
+Post
+https://localhost:44363/api/interest/
+    {
+
+        "title": "Hicking",
+        "description": "Hickning in the wildernes",
+        "peopleId": 1
+    }
 
 
 ### Lägga in nya länkar för en specifik person och ett specifikt intresse
-
-https://localhost:44363/api/Link/
 Post
+https://localhost:44363/api/Link/
+
 En Json som ser ut som följer
 { 
 "LinksId":4,
