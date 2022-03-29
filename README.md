@@ -19,7 +19,6 @@ Hämtar alla länkar där person Id är 1.
 Post
 https://localhost:44363/api/interest/
     {
-
         "title": "Hicking",
         "description": "Hickning in the wildernes",
         "peopleId": 1
