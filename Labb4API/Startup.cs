@@ -1,7 +1,10 @@
+using Labb4API.Models;
+using Labb4API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,7 +28,15 @@ namespace Labb4API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            //EF SQL
+            services.AddDbContext<Labb4APIDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Connetion")));
+
+            //Services AddScoped
+            services.AddScoped<ILabb4API<People>, PeopleRepository>();
+            services.AddScoped<IInterestRepository<Interest>, IntrestRepository>();
+            services.AddScoped<ILinks<Link>, LinkRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
